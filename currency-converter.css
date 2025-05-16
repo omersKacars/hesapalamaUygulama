@@ -1,0 +1,292 @@
+/* currency-converter.css */
+
+/* --- Genel Sayfa ve Araç Konteyneri Stilleri (style.css'ten bazılarını devralır/üzerine yazar) --- */
+.page-container {
+    flex-grow: 1;
+    width: 100%;
+    padding: 1.5rem 1rem; /* Kenarlardan boşluk */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool-container {
+    background-color: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px; /* Konteynerin maksimum genişliği */
+    margin: 1rem auto;
+}
+
+.tool-container h2 {
+    text-align: center;
+    color: #2c3e50; /* Koyu mavi-gri */
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.header-link-nav { /* style.css'te de olabilir, burada spesifiklik için ekliyorum */
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.2s ease-in-out;
+}
+.header-link-nav:hover {
+    opacity: 0.8;
+}
+
+/* --- Döviz Çeviriciye Özel Stiller --- */
+.currency-converter-container .converter-form {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobil öncelikli: Tek sütun */
+    gap: 1.2rem;
+    align-items: end; /* Etiket ve inputların altını hizala */
+    margin-bottom: 2rem;
+}
+
+/* Orta ve büyük ekranlar için grid düzeni */
+@media (min-width: 600px) {
+    .currency-converter-container .converter-form {
+        grid-template-columns: 2fr 1fr 2fr; /* Miktar | Kaynak - Takas - Hedef */
+        grid-template-areas: /* Daha temiz bir tanımlama için */
+            "amount amount amount"
+            "from   swap  to";
+        gap: 1.5rem;
+        align-items: end;
+    }
+    .currency-converter-container .amount-group { grid-area: amount; }
+    .currency-converter-container .from-currency-group { grid-area: from; }
+    .currency-converter-container .to-currency-group { grid-area: to; }
+    .currency-converter-container .swap-button-container {
+        grid-area: swap;
+        align-self: center; /* Butonu dikeyde ortala */
+        margin-bottom: 0.5rem; /* Inputlarla hizalamak için gerekebilir */
+    }
+}
+
+.currency-converter-container .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.currency-converter-container .form-group label {
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    color: #4a5568; /* Biraz daha yumuşak bir gri */
+    font-weight: 500;
+}
+
+.currency-converter-container .form-group input[type="number"],
+.currency-converter-container .form-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #cbd5e0; /* Daha yumuşak bir border */
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7fafc; /* Çok açık gri arka plan */
+    color: #2d3748;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    appearance: none; /* Tarayıcı varsayılan okunu kaldırır */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234A5568%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-13.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.65em auto;
+    padding-right: 2.5rem; /* Ok için yer ayır */
+}
+.currency-converter-container .form-group select::-ms-expand { /* IE için özel select oku gizleme */
+    display: none;
+}
+
+.currency-converter-container .form-group input[type="number"]:focus,
+.currency-converter-container .form-group select:focus {
+    outline: none;
+    border-color: #3498db; /* Ana renk */
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25); /* Ana renkle uyumlu odak gölgesi */
+}
+
+/* Miktar inputu için tarayıcıların arttır/azalt oklarını gizle (isteğe bağlı) */
+.currency-converter-container .form-group input[type="number"]::-webkit-outer-spin-button,
+.currency-converter-container .form-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.currency-converter-container .form-group input[type="number"] {
+    -moz-appearance: textfield; /* Firefox için */
+}
+
+
+.currency-converter-container .swap-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.currency-converter-container #swap-currencies {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 50%; /* Tam daire */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, transform 0.3s ease-out;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.currency-converter-container #swap-currencies:hover,
+.currency-converter-container #swap-currencies:focus {
+    background-color: #2980b9; /* Hover'da biraz koyu */
+    transform: rotate(180deg) scale(1.1);
+    outline: none; /* Odak için kendi stilimizi kullanacağız veya tarayıcı varsayılanını bırakacağız */
+    box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
+}
+.currency-converter-container #swap-currencies:focus-visible { /* Klavye odaklanması için belirgin stil */
+    outline: 2px solid #2980b9;
+    outline-offset: 2px;
+}
+
+.currency-converter-container #swap-currencies svg {
+    width: 22px; /* İkon boyutu */
+    height: 22px;
+    fill: white;
+}
+
+.currency-converter-container .result-area {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #e9f5ff; /* Açık mavi arka plan */
+    border-radius: 8px;
+    border-left: 5px solid #3498db; /* Sol tarafta vurgu çizgisi */
+    text-align: left;
+    transition: opacity 0.3s ease;
+}
+.currency-converter-container .result-area.loading {
+    opacity: 0.7; /* Yüklenirken biraz soluk */
+}
+
+.currency-converter-container .result-area p {
+    margin: 0.7rem 0;
+    color: #333;
+}
+
+.currency-converter-container .rate-info {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c3e50;
+}
+
+.currency-converter-container .final-result {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #27ae60; /* Başarı/sonuç rengi */
+    margin: 1rem 0;
+}
+.currency-converter-container .final-result strong {
+    color: #34495e; /* "Sonuç:" yazısının rengi */
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.currency-converter-container .subtle-text {
+    font-size: 0.85rem;
+    color: #7f8c8d; /* Gri, daha az önemli metin */
+}
+
+.currency-converter-container .error-message-container {
+    background-color: #ffebee; /* Açık kırmızı */
+    color: #c62828; /* Koyu kırmızı */
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 1.5rem;
+    border: 1px solid #ef9a9a; /* Kırmızı border */
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.currency-converter-container .back-to-home {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+/* style.css'e de eklenebilecek genel bir ikincil buton stili */
+.btn-secondary {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    background-color: #7f8c8d; /* Nötr gri */
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: #6c7a7d; /* Hover'da biraz koyu */
+    transform: translateY(-2px);
+    color: #ffffff;
+    outline: none;
+}
+.btn-secondary:focus-visible {
+    outline: 2px solid #525f62;
+    outline-offset: 1px;
+}
+
+
+/* --- Responsive Tasarım İyileştirmeleri --- */
+@media (max-width: 768px) {
+    .tool-container {
+        padding: 1.8rem 1.5rem;
+        margin: 1rem 0.5rem;
+    }
+    .tool-container h2 {
+        font-size: 1.8rem;
+    }
+    .currency-converter-container .final-result {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: 1rem 0.5rem;
+    }
+    .tool-container {
+        padding: 1.5rem 1rem; /* Mobil için daha az padding */
+    }
+    .tool-container h2 {
+        font-size: 1.6rem;
+    }
+    .currency-converter-container .form-group input[type="number"],
+    .currency-converter-container .form-group select {
+        padding: 0.75rem 0.8rem;
+        padding-right: 2.2rem; /* Ok için mobil padding */
+        font-size: 0.95rem;
+    }
+    .currency-converter-container .result-area {
+        padding: 1.2rem;
+    }
+    .currency-converter-container .final-result {
+        font-size: 1.4rem;
+    }
+    .currency-converter-container #swap-currencies {
+        padding: 0.7rem;
+    }
+    .currency-converter-container #swap-currencies svg {
+        width: 20px;
+        height: 20px;
+    }
+    .btn-secondary {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}

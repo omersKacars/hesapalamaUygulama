@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Döviz Çevirici - Hesaplama Dünyası</title>
+    <link rel="stylesheet" href="style.css"> <!-- Ana stil dosyası -->
+    <link rel="stylesheet" href="currency-converter.css"> <!-- Bu sayfaya özel stiller -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="header-link-nav">Hesaplama Dünyası</a></h1>
+        <p>Anlık Kurlarla Döviz Çevirin</p>
+    </header>
+
+    <main class="page-container">
+        <div class="tool-container currency-converter-container">
+            <h2>Döviz Çevirici</h2>
+
+            <div class="converter-form">
+                <div class="form-group amount-group">
+                    <label for="amount">Miktar:</label>
+                    <input type="number" id="amount" value="1" min="0.01" step="any" placeholder="Örn: 100" aria-label="Çevrilecek Miktar">
+                </div>
+
+                <div class="form-group currency-group from-currency-group">
+                    <label for="from-currency">Kaynak Para Birimi:</label>
+                    <select id="from-currency" aria-label="Kaynak Para Birimi">
+                        <option value="">Yükleniyor...</option>
+                    </select>
+                </div>
+
+                <div class="swap-button-container">
+                    <button id="swap-currencies" type="button" title="Para Birimlerini Değiştir" aria-label="Para Birimlerini Değiştir">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
+                            <path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="form-group currency-group to-currency-group">
+                    <label for="to-currency">Hedef Para Birimi:</label>
+                    <select id="to-currency" aria-label="Hedef Para Birimi">
+                        <option value="">Yükleniyor...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="result-area" id="result-area" aria-live="polite">
+                <p id="conversion-rate-info" class="rate-info">Kur bilgisi hesaplanıyor...</p>
+                <p id="conversion-result" class="final-result"><strong>Sonuç:</strong> Hesaplanıyor...</p>
+                <p id="last-updated-info" class="subtle-text">Oranlar en son ... tarihinde güncellendi.</p>
+            </div>
+
+            <div class="error-message-container" id="error-message-box" style="display: none;" role="alert">
+                <!-- Hata mesajı JS ile buraya eklenecek -->
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html" class="btn-secondary">« Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© <span id="current-year"></span> Hesaplama Dünyası. Tüm hakları saklıdır. <a href="index.html">Ana Sayfa</a></p>
+    </footer>
+
+    <script src="currency-converter.js"></script>
+</body>
+</html>

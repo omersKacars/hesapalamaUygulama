@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesap Makinesi - Hesaplama Dünyası</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calculator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet"> <!-- Ekran için monospace font -->
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="header-link-nav">Hesaplama Dünyası</a></h1>
+        <div class="calculator-mode-selector">
+            <label for="calc-mode">Mod:</label>
+            <select id="calc-mode">
+                <option value="standard" selected>Standart</option>
+                <option value="scientific">Bilimsel</option>
+            </select>
+        </div>
+    </header>
+
+    <main class="page-container">
+        <div class="tool-container calculator-container">
+            <div class="calculator">
+                <div class="calculator-screen">
+                    <div id="previous-operand" class="previous-operand"></div>
+                    <div id="current-operand" class="current-operand">0</div>
+                </div>
+                <div class="calculator-buttons">
+                    <!-- Bilimsel Mod Butonları (Başlangıçta gizli olabilir) -->
+                    <button data-operation="toggle-angle" class="btn-scientific span-1" style="display:none;" title="Açı Birimi (DEG/RAD)">DEG</button>
+                    <button data-operation="inv" class="btn-scientific" style="display:none;" title="Ters Fonksiyonlar (INV)">INV</button>
+                    <button data-function="sin" class="btn-scientific" style="display:none;">sin</button>
+                    <button data-function="cos" class="btn-scientific" style="display:none;">cos</button>
+                    <button data-function="tan" class="btn-scientific" style="display:none;">tan</button>
+
+                    <button data-constant="PI" class="btn-scientific" style="display:none;">π</button>
+                    <button data-constant="E" class="btn-scientific" style="display:none;">e</button>
+                    <button data-operation="open-parenthesis" class="btn-scientific" style="display:none;">(</button>
+                    <button data-operation="close-parenthesis" class="btn-scientific" style="display:none;">)</button>
+                    <button data-function="factorial" class="btn-scientific" style="display:none;">n!</button>
+
+                    <button data-function="sqrt" class="btn-scientific" style="display:none;">√</button>
+                    <button data-function="pow" class="btn-scientific" style="display:none;">xʸ</button>
+                    <button data-function="log" class="btn-scientific" style="display:none;">log</button>
+                    <button data-function="ln" class="btn-scientific" style="display:none;">ln</button>
+                    <button data-function="exp" class="btn-scientific" style="display:none;">eˣ</button>
+
+                    <!-- Standart Butonlar -->
+                    <button data-memory="clear" class="btn-memory">MC</button>
+                    <button data-memory="recall" class="btn-memory">MR</button>
+                    <button data-memory="add" class="btn-memory">M+</button>
+                    <button data-memory="subtract" class="btn-memory">M-</button>
+                    <button data-operation="percentage" class="btn-operator">%</button>
+
+                    <button data-action="clear-entry" class="btn-control">CE</button>
+                    <button data-action="all-clear" class="btn-control">C</button>
+                    <button data-action="delete" class="btn-control">DEL</button>
+                    <button data-operator="divide" class="btn-operator">÷</button>
+
+                    <button data-number="7" class="btn-number">7</button>
+                    <button data-number="8" class="btn-number">8</button>
+                    <button data-number="9" class="btn-number">9</button>
+                    <button data-operator="multiply" class="btn-operator">×</button>
+
+                    <button data-number="4" class="btn-number">4</button>
+                    <button data-number="5" class="btn-number">5</button>
+                    <button data-number="6" class="btn-number">6</button>
+                    <button data-operator="subtract" class="btn-operator">−</button>
+
+                    <button data-number="1" class="btn-number">1</button>
+                    <button data-number="2" class="btn-number">2</button>
+                    <button data-number="3" class="btn-number">3</button>
+                    <button data-operator="add" class="btn-operator">+</button>
+
+                    <button data-action="negate" class="btn-number">±</button>
+                    <button data-number="0" class="btn-number">0</button>
+                    <button data-number="." class="btn-number">.</button>
+                    <button data-action="equals" class="btn-equals span-1">=</button>
+                </div>
+            </div>
+            <div class="back-to-home">
+                <a href="index.html" class="btn-secondary">« Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© <span id="current-year"></span> Hesaplama Dünyası. Tüm hakları saklıdır. <a href="index.html">Ana Sayfa</a></p>
+    </footer>
+
+    <script src="calculator.js"></script>
+</body>
+</html>

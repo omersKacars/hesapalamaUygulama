@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDV Dahil/Hariç Hesaplama - Hesaplama Dünyası</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="vat-calculator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="header-link-nav">Hesaplama Dünyası</a></h1>
+        <p>KDV Hesaplamalarınızı Kolayca Yapın</p>
+    </header>
+
+    <main class="page-container">
+        <div class="tool-container vat-calculator-container">
+            <h2>KDV Dahil / Hariç Fiyat Hesaplayıcı</h2>
+
+            <form id="vatForm">
+                <div class="form-group calculation-type-group">
+                    <label>Hesaplama Türü:</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="calculationType" value="grossFromNet" checked>
+                            <span class="radio-custom"></span> KDV Hariçten KDV Dahil
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="calculationType" value="netFromGross">
+                            <span class="radio-custom"></span> KDV Dahilden KDV Hariç
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group amount-input-group">
+                        <label for="amount" id="amountLabel">KDV Hariç Tutar (₺):</label>
+                        <input type="number" id="amount" name="amount" min="0" step="any" required placeholder="Örn: 100">
+                    </div>
+
+                    <div class="form-group vat-rate-group">
+                        <label for="vatRate">KDV Oranı (%):</label>
+                        <div class="vat-options">
+                            <input type="number" id="vatRateCustom" name="vatRateCustom" min="0" step="any" placeholder="Özel Oran">
+                            <button type="button" class="btn-vat-rate" data-rate="1">1%</button>
+                            <button type="button" class="btn-vat-rate" data-rate="10">10%</button>
+                            <button type="button" class="btn-vat-rate active" data-rate="20">20%</button>
+                        </div>
+                        <small>Bir oran seçin veya özel bir oran girin.</small>
+                    </div>
+                </div>
+
+
+                <div class="form-group form-actions">
+                    <button type="submit" class="btn-primary">Hesapla</button>
+                    <button type="reset" class="btn-secondary">Temizle</button>
+                </div>
+            </form>
+
+            <div id="resultArea" class="result-area" style="display: none;">
+                <h3>Hesaplama Sonuçları:</h3>
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label" id="labelNetPrice">KDV Hariç Fiyat:</span>
+                        <span class="result-value" id="resultNetPrice"></span> ₺
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">KDV Tutarı:</span>
+                        <span class="result-value" id="resultVatAmount"></span> ₺
+                    </div>
+                    <div class="result-item highlight-result">
+                        <span class="result-label" id="labelGrossPrice">KDV Dahil Fiyat:</span>
+                        <span class="result-value" id="resultGrossPrice"></span> ₺
+                    </div>
+                </div>
+                 <div class="result-summary" id="resultSummaryText">
+                    <!-- Özet metin JS ile eklenecek -->
+                </div>
+            </div>
+
+            <div class="error-message-container" id="error-message-box" style="display: none;" role="alert">
+                <!-- Hata mesajı JS ile buraya eklenecek -->
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html" class="btn-secondary">« Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© <span id="current-year"></span> Hesaplama Dünyası. Tüm hakları saklıdır. <a href="index.html">Ana Sayfa</a></p>
+    </footer>
+
+    <script src="vat-calculator.js"></script>
+</body>
+</html>

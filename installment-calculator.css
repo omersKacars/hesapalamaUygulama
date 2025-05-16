@@ -1,0 +1,191 @@
+/* installment-calculator.css */
+
+.page-container {
+    flex-grow: 1;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool-container.installment-calculator-container {
+    background-color: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 650px; /* Form için uygun bir genişlik */
+    margin: 1rem auto;
+}
+
+.tool-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.installment-calculator-container .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.installment-calculator-container .form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+.installment-calculator-container .form-group label .optional-text {
+    font-weight: normal;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.installment-calculator-container .form-section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #34495e;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.installment-calculator-container .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.installment-calculator-container .form-group input[type="number"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.installment-calculator-container .form-group input[type="number"]:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+.installment-calculator-container .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    margin-top: 2rem;
+}
+/* .btn-primary, .btn-secondary style.css'den gelir */
+
+/* Sonuç Alanı */
+.installment-calculator-container .result-area {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background-color: #fdf6e3; /* Krem rengi arka plan */
+    border-radius: 8px;
+    border-left: 5px solid #b58900; /* Kahverengi vurgu */
+}
+.installment-calculator-container .result-area h3 {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    color: #654321; /* Koyu kahve */
+    font-size: 1.4rem;
+}
+.installment-calculator-container .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    border-bottom: 1px dashed #eee8d5; /* Açık krem kesik çizgi */
+}
+.installment-calculator-container .result-item:last-of-type:not(:has(~.result-summary)) { /* Özet yoksa son itemin alt çizgisini kaldır */
+    border-bottom: none;
+}
+
+.installment-calculator-container .result-divider {
+    border: none;
+    border-top: 1px solid #d3c0a5; /* Biraz daha belirgin ayırıcı */
+    margin: 0.5rem 0;
+}
+
+.installment-calculator-container .result-label {
+    color: #586e75; /* Gri-mavi */
+    font-weight: 500;
+}
+.installment-calculator-container .result-value {
+    color: #073642; /* Çok koyu mavi-gri */
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.installment-calculator-container .highlight-result .result-label {
+    font-weight: bold;
+}
+/* Toplam Maliyet için özel stil */
+.installment-calculator-container .cost-result .result-value {
+    font-size: 1.6rem;
+    color: #cb4b16; /* Turuncu-kırmızı (maliyet vurgusu) */
+}
+/* Vade Farkı için özel stil */
+.installment-calculator-container .difference-result .result-value {
+    font-size: 1.3rem;
+    color: #dc322f; /* Kırmızı (ek maliyet vurgusu) */
+}
+.installment-calculator-container .difference-result .result-label {
+     color: #dc322f; /* Kırmızı etiket */
+}
+
+
+.installment-calculator-container .result-summary {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #d3c0a5;
+    font-size: 1rem;
+    color: #586e75;
+    line-height: 1.6;
+    text-align: center;
+}
+.installment-calculator-container .result-summary strong {
+    color: #073642;
+}
+
+/* Hata ve Geri Dönüş Butonları (style.css'den gelebilir) */
+.error-message-container, .back-to-home {
+    /* ... style.css'deki tanımlamalar ... */
+}
+
+@media (max-width: 600px) {
+    .tool-container.installment-calculator-container {
+        padding: 1.5rem 1rem;
+    }
+    .installment-calculator-container .form-grid {
+        grid-template-columns: 1fr; /* Mobil için taksit bilgileri alt alta */
+    }
+     .installment-calculator-container .form-actions {
+        flex-direction: column;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+    .installment-calculator-container .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    .installment-calculator-container .cost-result .result-value {
+        font-size: 1.4rem;
+    }
+    .installment-calculator-container .difference-result .result-value {
+        font-size: 1.2rem;
+    }
+}

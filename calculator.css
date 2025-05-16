@@ -1,0 +1,295 @@
+/* calculator.css */
+
+/* --- Genel Sayfa ve Araç Konteyneri Stilleri (style.css'ten bazılarını devralır/üzerine yazar) --- */
+.page-container {
+    flex-grow: 1;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Hesap makinesini üste yakın tut */
+}
+
+.tool-container.calculator-container {
+    background-color: #eef1f5; /* Hesap makinesi için biraz farklı bir arka plan */
+    padding: 1.5rem;
+    border-radius: 16px; /* Daha yumuşak köşeler */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 420px; /* Standart mod için ideal genişlik */
+    margin: 1rem auto;
+    transition: max-width 0.3s ease-in-out; /* Mod değişiminde genişlik animasyonu */
+}
+.tool-container.calculator-container.scientific-mode {
+    max-width: 680px; /* Bilimsel mod için daha geniş */
+}
+
+.header-link-nav {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.2s ease-in-out;
+}
+.header-link-nav:hover {
+    opacity: 0.8;
+}
+
+.calculator-mode-selector {
+    margin-top: 0.5rem;
+    color: #fff; /* Header içindeki metin rengiyle uyumlu */
+    font-size: 0.9rem;
+}
+.calculator-mode-selector label {
+    margin-right: 0.5rem;
+}
+.calculator-mode-selector select {
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+}
+.calculator-mode-selector select:focus {
+    outline: 2px solid #3498db;
+}
+
+
+/* --- Hesap Makinesi Ana Yapısı --- */
+.calculator {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Ekran ve butonlar arası boşluk */
+}
+
+/* --- Ekran Stilleri --- */
+.calculator-screen {
+    background-color: #dde4eb; /* Ekran için biraz daha koyu */
+    color: #2c3e50; /* Koyu yazı rengi */
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+    text-align: right;
+    font-family: 'Roboto Mono', monospace;
+    overflow: hidden;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 80px; /* Minimum yükseklik */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.previous-operand {
+    font-size: 1.1rem; /* Biraz daha küçük */
+    color: #546e7a; /* Daha soluk renk */
+    min-height: 1.5em; /* Satır kaymasını önlemek için */
+    word-break: break-all; /* Uzun ifadelerde satır kırma */
+}
+
+.current-operand {
+    font-size: 2.2rem; /* Ana sayı/sonuç için büyük font */
+    font-weight: 500;
+    min-height: 1.5em;
+    word-break: break-all;
+    line-height: 1.2;
+}
+
+/* --- Buton Izgarası --- */
+.calculator-buttons {
+    display: grid;
+    /* Standart Mod: 5 sütun */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.8rem; /* Butonlar arası boşluk */
+    transition: grid-template-columns 0.3s ease-in-out;
+}
+
+.calculator-container.scientific-mode .calculator-buttons {
+    /* Bilimsel Mod: Gerektiği kadar sütun (örn: 8 veya 10) */
+    grid-template-columns: repeat(5, 1fr); /* Varsayılanı koruyup, bilimsel butonları yukarı taşıyalım */
+    /* Veya daha fazla sütun için: */
+    /* grid-template-columns: repeat(8, 1fr); */
+}
+
+
+/* --- Genel Buton Stilleri --- */
+.calculator-buttons button {
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    border-radius: 8px; /* Köşeleri oval */
+    cursor: pointer;
+    background-color: #f8f9fa; /* Açık gri buton */
+    color: #343a40; /* Koyu gri metin */
+    box-shadow: 0 3px 5px rgba(0,0,0,0.07);
+    transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator-buttons button:hover {
+    background-color: #e9ecef; /* Hover'da biraz daha koyu */
+}
+
+.calculator-buttons button:active {
+    background-color: #d1d6db; /* Tıklama anında daha koyu */
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.calculator-buttons button:focus-visible {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+
+/* Özel Buton Tipleri */
+.btn-number, .btn-memory {
+    /* Standart numara ve hafıza butonları için özel bir şey gerekmiyorsa genel stili kullanır */
+}
+
+.btn-operator {
+    background-color: #ffedd5; /* Operatörler için farklı renk (turuncu tonu) */
+    color: #9a3412;
+}
+.btn-operator:hover {
+    background-color: #fed7aa;
+}
+.btn-operator:active {
+    background-color: #fdba74;
+}
+
+.btn-control {
+    background-color: #fee2e2; /* Kontrol butonları için (kırmızı tonu) */
+    color: #991b1b;
+}
+.btn-control:hover {
+    background-color: #fecaca;
+}
+.btn-control:active {
+    background-color: #fca5a5;
+}
+
+.btn-equals {
+    background-color: #22c55e; /* Eşittir için yeşil */
+    color: #ffffff;
+    /* grid-column: span 2;  Eğer 4 sütunlu düzende 2 yer kaplayacaksa */
+}
+.btn-equals:hover {
+    background-color: #16a34a;
+}
+.btn-equals:active {
+    background-color: #15803d;
+}
+
+/* Bilimsel mod butonları için özel stil */
+.btn-scientific {
+    background-color: #e0e7ff; /* Bilimsel için mavi tonu */
+    color: #3730a3;
+    font-size: 1rem; /* Biraz daha küçük font */
+}
+.btn-scientific:hover {
+    background-color: #c7d2fe;
+}
+.btn-scientific:active {
+    background-color: #a5b4fc;
+}
+
+/* Butonların birden fazla sütun kaplaması için */
+.span-1 {
+    /* Özel bir durum yok, grid-template-columns ile düzenlenecek veya JS ile */
+}
+
+
+/* --- Responsive Tasarım --- */
+/* Bilimsel butonların yerleşimi: Bilimsel modda butonlar normaldekinden daha fazla olacak.
+   Grid'i yeniden düzenleyerek veya bilimsel butonları ayrı bir konteynere alarak yönetebiliriz.
+   Şimdilik JS ile `display: none` / `display: grid-item` (veya flex) yapacağız.
+   Bilimsel modda grid sütun sayısını artırabiliriz.
+*/
+.calculator-container.standard-mode .btn-scientific {
+    display: none !important; /* Standart modda bilimsel butonlar kesinlikle gizli */
+}
+
+.calculator-container.scientific-mode .calculator-buttons {
+    /* Bilimsel modda, üst sıralara bilimsel butonlar gelecek şekilde grid'i yeniden tanımlayalım */
+    grid-template-columns: repeat(5, 1fr); /* Örneğin 5 sütunlu kalabilir ve butonlar alt alta sıralanır */
+                                       /* VEYA daha fazla sütun için: */
+                                       /* grid-template-columns: repeat(7, 1fr); */
+                                       /* Bu durumda HTML'deki buton sırası da önemli olacak. */
+}
+
+/* Mobil için buton boyutları ve boşluklar */
+@media (max-width: 600px) {
+    .tool-container.calculator-container {
+        padding: 1rem;
+        max-width: 360px; /* Mobil için daha dar */
+    }
+    .tool-container.calculator-container.scientific-mode {
+        max-width: 100%; /* Bilimsel modda mobilde tam genişlik kullanabilir */
+        padding: 0.8rem;
+    }
+
+    .calculator-screen {
+        padding: 1rem 0.8rem;
+        min-height: 70px;
+    }
+    .previous-operand {
+        font-size: 1rem;
+    }
+    .current-operand {
+        font-size: 1.8rem;
+    }
+    .calculator-buttons {
+        gap: 0.6rem;
+    }
+    .calculator-buttons button {
+        padding: 0.8rem;
+        font-size: 1.1rem;
+    }
+    .btn-scientific {
+        font-size: 0.9rem;
+        padding: 0.7rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .tool-container.calculator-container {
+        max-width: 100%; /* En küçük ekranlarda tam genişlik */
+        border-radius: 0; /* Kenar boşlukları yoksa köşeleri düz yap */
+        box-shadow: none;
+    }
+    .calculator-screen {
+        border-radius: 8px; /* Küçük ekranlarda da köşe yuvarlaklığı kalsın */
+    }
+    .current-operand {
+        font-size: 1.7rem;
+    }
+}
+
+/* --- "Ana Sayfaya Dön" Butonu Stili --- */
+.back-to-home {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+.btn-secondary {
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    background-color: #7f8c8d;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-secondary:hover, .btn-secondary:focus {
+    background-color: #6c7a7d;
+    transform: translateY(-2px);
+    color: #ffffff;
+    outline: none;
+}
+.btn-secondary:focus-visible {
+    outline: 2px solid #525f62;
+    outline-offset: 1px;
+}

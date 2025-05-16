@@ -1,0 +1,299 @@
+/* vat-calculator.css */
+
+.page-container {
+    flex-grow: 1;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool-container.vat-calculator-container {
+    background-color: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 650px;
+    margin: 1rem auto;
+}
+
+.tool-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.vat-calculator-container .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.vat-calculator-container .form-group label:not(.radio-label) { /* Radio buton etiketleri hariç */
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+/* Hesaplama Türü Radio Butonları */
+.vat-calculator-container .calculation-type-group label:first-of-type { /* "Hesaplama Türü:" başlığı */
+     margin-bottom: 0.8rem;
+}
+.vat-calculator-container .radio-group {
+    display: flex;
+    flex-wrap: wrap; /* Mobil için alt alta geçebilir */
+    gap: 1rem;
+    background-color: #f8f9fa;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #e0e7ff;
+}
+.vat-calculator-container .radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #333;
+    position: relative; /* Özel radio için */
+    padding-left: 28px; /* Özel radio için yer */
+    user-select: none;
+}
+.vat-calculator-container .radio-label input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.vat-calculator-container .radio-custom {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 2px solid #adb5bd;
+    border-radius: 50%;
+    transition: border-color 0.2s;
+}
+.vat-calculator-container .radio-label:hover input[type="radio"] ~ .radio-custom {
+    border-color: #3498db;
+}
+.vat-calculator-container .radio-label input[type="radio"]:checked ~ .radio-custom {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+.vat-calculator-container .radio-custom::after {
+    content: "";
+    position: absolute;
+    display: none;
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+.vat-calculator-container .radio-label input[type="radio"]:checked ~ .radio-custom::after {
+    display: block;
+}
+
+
+/* Ana Form Grid (Tutar ve KDV Oranı) */
+.vat-calculator-container .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    align-items: start; /* Etiketler yukarıda kalsın */
+}
+
+.vat-calculator-container .form-group input[type="number"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.vat-calculator-container .form-group input[type="number"]:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+/* KDV Oranı Seçenekleri */
+.vat-calculator-container .vat-options {
+    display: flex;
+    gap: 0.5rem; /* Input ve butonlar arası boşluk */
+    align-items: center; /* Dikeyde hizala */
+}
+.vat-calculator-container .vat-options input[type="number"] {
+    flex-grow: 1; /* Mümkün olduğunca genişlesin */
+    min-width: 100px; /* Minimum genişlik */
+}
+.vat-calculator-container .btn-vat-rate {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.vat-calculator-container .btn-vat-rate:hover {
+    background-color: #dde2e6;
+    border-color: #adb5bd;
+}
+.vat-calculator-container .btn-vat-rate.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+}
+.vat-calculator-container .vat-rate-group small {
+    display: block;
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 0.5rem;
+}
+
+/* Form Eylemleri */
+.vat-calculator-container .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    margin-top: 2rem;
+}
+.btn-primary { /* style.css'den gelebilir */
+    padding: 0.8rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+.btn-secondary { /* style.css'den gelebilir */
+    padding: 0.8rem 1.5rem;
+    background-color: #7f8c8d;
+    color: #ffffff;
+    border: none;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+.btn-secondary:hover {
+    background-color: #6c7a7d;
+}
+
+/* Sonuç Alanı */
+.vat-calculator-container .result-area {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    background-color: #e9f5ff;
+    border-radius: 8px;
+    border-left: 5px solid #3498db;
+}
+.vat-calculator-container .result-area h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    font-size: 1.4rem;
+}
+
+.vat-calculator-container .result-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Varsayılan tek sütun */
+    gap: 0.8rem;
+}
+@media (min-width: 500px) { /* Daha geniş ekranlarda 2 veya 3 sütun */
+    .vat-calculator-container .result-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+    }
+}
+
+.vat-calculator-container .result-item {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+.vat-calculator-container .result-label {
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 500;
+}
+.vat-calculator-container .result-value {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+.vat-calculator-container .result-item.highlight-result { /* Vurgulu ana sonuç */
+    background-color: #d4edda; /* Açık yeşil */
+    border-left: 4px solid #28a745; /* Yeşil vurgu */
+}
+.vat-calculator-container .result-item.highlight-result .result-label {
+    color: #155724;
+}
+.vat-calculator-container .result-item.highlight-result .result-value {
+    color: #155724;
+    font-size: 1.5rem;
+}
+.vat-calculator-container .result-summary {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #b3d4fc;
+    font-size: 1rem;
+    color: #34495e;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Hata ve Geri Dönüş Butonları (style.css'den gelebilir) */
+.error-message-container, .back-to-home {
+    /* ... style.css'deki tanımlamalar ... */
+}
+
+@media (max-width: 600px) {
+    .tool-container.vat-calculator-container {
+        padding: 1.5rem 1rem;
+    }
+    .vat-calculator-container .radio-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .vat-calculator-container .vat-options {
+        flex-direction: column;
+        align-items: stretch; /* Butonlar tam genişlesin */
+    }
+    .vat-calculator-container .vat-options input[type="number"] {
+        margin-bottom: 0.5rem; /* Input ve butonlar arası boşluk */
+    }
+     .vat-calculator-container .form-actions {
+        flex-direction: column;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+}

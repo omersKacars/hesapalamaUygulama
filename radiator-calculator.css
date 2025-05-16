@@ -1,0 +1,251 @@
+/* radiator-calculator.css */
+
+.page-container {
+    flex-grow: 1;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tool-container.radiator-calculator-container {
+    background-color: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 750px; /* Form için uygun bir genişlik */
+    margin: 1rem auto;
+}
+
+.tool-container h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.radiator-calculator-container .form-section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #34495e;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+.radiator-calculator-container .form-section-title:first-of-type {
+    margin-top: 0; /* İlk bölüm başlığının üst boşluğunu kaldır */
+}
+
+.radiator-calculator-container .form-grid {
+    display: grid;
+    /* En az 280px genişliğinde sütunlar, sığdığı kadar */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; /* Sütunlar ve satırlar arası boşluk */
+    margin-bottom: 1.5rem;
+}
+/* Eğer tek elemanlı bir grid varsa, tam genişlikte olmasını sağla (Radyatör Bilgisi bölümü için) */
+.radiator-calculator-container .form-grid:has(> .form-group:nth-last-child(1):first-child) {
+    grid-template-columns: 1fr;
+}
+
+
+.radiator-calculator-container .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.radiator-calculator-container .form-group label {
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.radiator-calculator-container .form-group input[type="number"],
+.radiator-calculator-container .form-group select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7fafc;
+    color: #2d3748;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.radiator-calculator-container .form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%234A5568%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-13.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.65em auto;
+    padding-right: 2.5rem;
+}
+.radiator-calculator-container .form-group select::-ms-expand {
+    display: none;
+}
+
+.radiator-calculator-container .form-group input[type="number"]:focus,
+.radiator-calculator-container .form-group select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+}
+
+.radiator-calculator-container .form-group small {
+    font-size: 0.8rem;
+    color: #718096;
+    margin-top: 0.4rem;
+    line-height: 1.4;
+}
+
+.radiator-calculator-container .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    margin-top: 2rem;
+}
+
+.btn-primary { /* style.css'de tanımlı olabilir */
+    padding: 0.8rem 1.5rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+.btn-secondary { /* style.css'de tanımlı olabilir */
+    padding: 0.8rem 1.5rem;
+    background-color: #7f8c8d;
+    color: #ffffff;
+    border: none;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-secondary:hover {
+    background-color: #6c7a7d;
+}
+
+
+.radiator-calculator-container .result-area {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem; /* Biraz daha fazla padding */
+    background-color: #e9f5ff;
+    border-radius: 8px;
+    border-left: 5px solid #3498db;
+}
+
+.radiator-calculator-container .result-area h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem; /* Daha fazla boşluk */
+    color: #2c3e50;
+    font-size: 1.4rem; /* Başlık biraz daha büyük */
+}
+
+.radiator-calculator-container .result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed #b3d4fc;
+    font-size: 1.05rem;
+}
+.radiator-calculator-container .result-item:last-of-type:not(:has(~ .disclaimer)) { /* Feragatname yoksa son itemin alt çizgisini kaldır */
+    border-bottom: none;
+}
+.radiator-calculator-container .result-item.highlight-result { /* Vurgulu sonuç için */
+     border-bottom: none; /* Alt çizgiyi kaldır, zaten farklı */
+     padding: 1rem 0; /* Biraz daha fazla dikey boşluk */
+}
+
+
+.radiator-calculator-container .result-label {
+    color: #34495e;
+    font-weight: 500;
+}
+
+.radiator-calculator-container .result-value {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.radiator-calculator-container .highlight-result .result-label,
+.radiator-calculator-container .highlight-result .result-value {
+    font-size: 1.3rem; /* Vurgulu sonuç metni daha büyük */
+    color: #16a085; /* Yeşil tonu */
+}
+.radiator-calculator-container .highlight-result .result-label {
+    font-weight: 500;
+}
+
+
+.radiator-calculator-container .disclaimer {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    margin-top: 1.5rem;
+    font-style: italic;
+    line-height: 1.5;
+    padding-top: 1rem;
+    border-top: 1px solid #b3d4fc; /* Feragatnameyi de ayır */
+}
+
+.error-message-container { /* style.css'den gelebilir */
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 1.5rem;
+    border: 1px solid #ef9a9a;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.back-to-home { /* style.css'den gelebilir */
+    margin-top: 2rem;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .tool-container.radiator-calculator-container {
+        padding: 1.5rem 1rem;
+    }
+    .radiator-calculator-container .form-grid {
+        /* Mobil için tek sütun, auto-fit zaten bunu yapar ama explicit olarak da ayarlanabilir */
+        /* grid-template-columns: 1fr; */
+    }
+    .radiator-calculator-container .form-actions {
+        flex-direction: column;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+    .radiator-calculator-container .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+    }
+    .radiator-calculator-container .result-area h3 {
+        font-size: 1.3rem;
+    }
+     .radiator-calculator-container .highlight-result .result-label,
+     .radiator-calculator-container .highlight-result .result-value {
+        font-size: 1.2rem;
+    }
+}

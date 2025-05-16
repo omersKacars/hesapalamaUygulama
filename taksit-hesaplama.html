@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taksitli Alışveriş Maliyet Hesaplayıcı - Hesaplama Dünyası</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="installment-calculator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="header-link-nav">Hesaplama Dünyası</a></h1>
+        <p>Taksitli Alışverişlerinizin Gerçek Maliyetini Öğrenin</p>
+    </header>
+
+    <main class="page-container">
+        <div class="tool-container installment-calculator-container">
+            <h2>Taksitli Alışveriş Toplam Maliyet Hesaplayıcı</h2>
+
+            <form id="installmentForm">
+                <div class="form-group">
+                    <label for="cashPrice">Ürünün Peşin Fiyatı (₺):</label>
+                    <input type="number" id="cashPrice" name="cashPrice" min="0" step="any" required placeholder="Örn: 5000">
+                </div>
+
+                <div class="form-section-title">Taksit Bilgileri</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="downPayment">Peşinat Tutarı (₺): <span class="optional-text">(Yoksa 0 girin)</span></label>
+                        <input type="number" id="downPayment" name="downPayment" min="0" step="any" value="0" placeholder="Örn: 1000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numberOfInstallments">Taksit Sayısı (Ay):</label>
+                        <input type="number" id="numberOfInstallments" name="numberOfInstallments" min="1" step="1" required placeholder="Örn: 12">
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label for="monthlyPayment">Aylık Taksit Tutarı (₺):</label>
+                     <input type="number" id="monthlyPayment" name="monthlyPayment" min="0" step="any" required placeholder="Örn: 400">
+                </div>
+
+
+                <div class="form-group form-actions">
+                    <button type="submit" class="btn-primary">Hesapla</button>
+                    <button type="reset" class="btn-secondary">Temizle</button>
+                </div>
+            </form>
+
+            <div id="resultArea" class="result-area" style="display: none;">
+                <h3>Hesaplama Sonuçları:</h3>
+                <div class="result-item">
+                    <span class="result-label">Ürünün Peşin Fiyatı:</span>
+                    <span class="result-value" id="resultCashPrice"></span> ₺
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Ödenen Peşinat:</span>
+                    <span class="result-value" id="resultDownPayment"></span> ₺
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Kalan Taksitli Tutar:</span>
+                    <span class="result-value" id="resultRemainingAmount"></span> ₺
+                </div>
+                <hr class="result-divider">
+                <div class="result-item">
+                    <span class="result-label">Aylık Taksit Tutarı:</span>
+                    <span class="result-value" id="resultMonthlyPayment"></span> ₺
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Taksit Sayısı:</span>
+                    <span class="result-value" id="resultNumberOfInstallments"></span> Ay
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Toplam Ödenecek Taksit Tutarı:</span>
+                    <span class="result-value" id="resultTotalInstallmentPayment"></span> ₺
+                </div>
+                <hr class="result-divider">
+                <div class="result-item highlight-result cost-result">
+                    <span class="result-label">Taksitli Toplam Maliyet:</span>
+                    <span class="result-value" id="resultTotalCost"></span> ₺
+                </div>
+                <div class="result-item highlight-result difference-result">
+                    <span class="result-label">Toplam Vade Farkı / Ek Maliyet:</span>
+                    <span class="result-value" id="resultTotalDifference"></span> ₺
+                </div>
+                <div class="result-summary" id="summaryText">
+                    <!-- Özet metin JS ile eklenecek -->
+                </div>
+            </div>
+
+            <div class="error-message-container" id="error-message-box" style="display: none;" role="alert">
+                <!-- Hata mesajı JS ile buraya eklenecek -->
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html" class="btn-secondary">« Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© <span id="current-year"></span> Hesaplama Dünyası. Tüm hakları saklıdır. <a href="index.html">Ana Sayfa</a></p>
+    </footer>
+
+    <script src="installment-calculator.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalorifer Metretül Hesaplama - Hesaplama Dünyası</title>
+    <link rel="stylesheet" href="style.css"> <!-- Ana stil dosyası -->
+    <link rel="stylesheet" href="radiator-calculator.css"> <!-- Bu sayfaya özel stiller -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" class="header-link-nav">Hesaplama Dünyası</a></h1>
+        <p>Odanız İçin İdeal Radyatör Metretülünü Hesaplayın</p>
+    </header>
+
+    <main class="page-container">
+        <div class="tool-container radiator-calculator-container">
+            <h2>Kalorifer Metretül Hesaplayıcı</h2>
+
+            <form id="radiatorForm">
+                <div class="form-section-title">Oda Bilgileri</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="roomWidth">Oda Genişliği (metre):</label>
+                        <input type="number" id="roomWidth" name="roomWidth" min="1" step="0.01" required placeholder="Örn: 3.5">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roomLength">Oda Uzunluğu (metre):</label>
+                        <input type="number" id="roomLength" name="roomLength" min="1" step="0.01" required placeholder="Örn: 4.2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roomHeight">Oda Yüksekliği (metre):</label>
+                        <input type="number" id="roomHeight" name="roomHeight" min="2" step="0.01" value="2.7" required placeholder="Örn: 2.7">
+                    </div>
+                </div>
+
+                <div class="form-section-title">Çevresel Faktörler</div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="insulationType">Yalıtım Durumu:</label>
+                        <select id="insulationType" name="insulationType">
+                            <option value="good" data-factor="1">İyi Yalıtımlı (Yeni, Mantolamalı)</option>
+                            <option value="medium" data-factor="1.15" selected>Orta Yalıtımlı (Standart)</option>
+                            <option value="poor" data-factor="1.35">Zayıf Yalıtımlı (Eski, Yalıtımsız)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="regionFactor">Bölgesel Isı İhtiyacı (Watt/m³):</label>
+                        <select id="regionFactor" name="regionFactor">
+                            <option value="60">Çok Soğuk Bölgeler (Örn: Doğu Anadolu)</option>
+                            <option value="50" selected>Soğuk Bölgeler (Örn: İç Anadolu)</option>
+                            <option value="45">Orta Soğuk Bölgeler (Örn: Karadeniz Sahil)</option>
+                            <option value="40">Ilıman Bölgeler (Örn: Marmara, Ege)</option>
+                            <option value="35">Sıcak Bölgeler (Örn: Akdeniz, G.Doğu Sahil)</option>
+                        </select>
+                        <small>Odanın her metreküpü için gereken yaklaşık ısı miktarı.</small>
+                    </div>
+                </div>
+
+                <div class="form-section-title">Radyatör Bilgisi</div>
+                 <div class="form-grid">
+                    <div class="form-group">
+                        <label for="radiatorOutput">1 Metretül Radyatör Isı Verimi (Watt/mtül):</label>
+                        <input type="number" id="radiatorOutput" name="radiatorOutput" value="1800" min="1000" step="50" required>
+                        <small>Tipik PKKP 22/600 radyatör için 1800-2000 W/mtül (90/70°C su sıcaklığında).</small>
+                    </div>
+                </div>
+
+                <div class="form-group form-actions">
+                    <button type="submit" class="btn-primary">Hesapla</button>
+                    <button type="reset" class="btn-secondary">Temizle</button>
+                </div>
+            </form>
+
+            <div id="resultArea" class="result-area" style="display: none;">
+                <h3>Hesaplama Sonuçları:</h3>
+                <div class="result-item">
+                    <span class="result-label">Oda Hacmi:</span>
+                    <span class="result-value" id="resultRoomVolume"></span> m³
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Tahmini Isı İhtiyacı:</span>
+                    <span class="result-value" id="resultHeatLossWatt"></span> Watt
+                    (<span class="result-value" id="resultHeatLossKcal"></span> Kcal/h)
+                </div>
+                <div class="result-item highlight-result">
+                    <span class="result-label">Gerekli Radyatör Metretülü:</span>
+                    <span class="result-value" id="resultRadiatorLength"></span> metre
+                </div>
+                <p class="disclaimer">Bu hesaplama genel bir tahmindir. Kesin ve detaylı ısı kaybı hesabı için bir ısıtma mühendisine danışmanız önerilir. Pencere sayısı, cephe yönü, komşu hacimlerin durumu gibi faktörler sonucu etkileyebilir.</p>
+            </div>
+
+            <div class="error-message-container" id="error-message-box" style="display: none;" role="alert">
+                <!-- Hata mesajı JS ile buraya eklenecek -->
+            </div>
+
+            <div class="back-to-home">
+                <a href="index.html" class="btn-secondary">« Ana Sayfaya Dön</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© <span id="current-year"></span> Hesaplama Dünyası. Tüm hakları saklıdır. <a href="index.html">Ana Sayfa</a></p>
+    </footer>
+
+    <script src="radiator-calculator.js"></script>
+</body>
+</html>
